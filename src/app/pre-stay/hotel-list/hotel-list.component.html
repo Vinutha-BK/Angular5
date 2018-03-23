@@ -1,0 +1,24 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" style="font-size:large">
+        Hotel Search
+    </div>
+
+    <div class="panel-body">
+        <div class="container">
+            <app-search-bar (searchData)=searchData($event)></app-search-bar>
+        </div>
+        <div #list class="row scroll">
+            <div class="col-lg-6 list {{animation}}" *ngFor="let hotel of hotels | hotelFilter:location">
+                <div class="listContainer">
+                    <img class="icon" [src]='hotel.thumbnailImage' [title]='hotel.hotelName | uppercase'>
+                    <p class="item">
+                        <a class="col-lg-12">{{hotel.hotelName}}</a>
+                        <label class=" col-lg-12 ">{{hotel.location}}</label>
+                        <label class="col-lg-12 ">{{hotel.starRating}}</label>
+                    </p>
+                    <button class="alignRight" mat-raised-button color="primary" (click)="setHotelId(hotel.id,hotel.hotelName)" [routerLink]="['/booking',hotel.id]">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

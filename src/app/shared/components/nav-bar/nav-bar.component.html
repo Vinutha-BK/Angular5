@@ -1,0 +1,19 @@
+<nav class='navbar navbar-inverse'>
+    <div class='container-fluid'>
+        <div>
+            <img class="icon" src="/assets/main/StarT.png">
+            <a class='navbar-brand title' [routerLink]="['/home']"> Residentz</a>
+        </div>
+        <ul class='nav navbar-nav'>
+            <li><a *ngIf="userSVC.userLoggedIn" [routerLink]="['onstay']">My Bookings</a></li>
+            <li><a *ngIf="userSVC.userLoggedIn" [routerLink]="['stayservice']">Stay Service</a></li>
+            <li><a *ngIf="userSVC.userLoggedIn" [routerLink]="['checkout']">Check Out</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <a *ngIf="userSVC.userLoggedIn" class='navbar-brand' style="color: lightgreen">{{userSVC.loggedInUserName}}</a>
+            <li *ngIf="userSVC.userLoggedIn"><img style="height:60px;width:60px" src="{{userSVC.user?.photoUrl}}" /></li>
+            <li *ngIf="!userSVC.userLoggedIn"><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li *ngIf="userSVC.userLoggedIn"><a (click)="logout()"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+        </ul>
+    </div>
+</nav>

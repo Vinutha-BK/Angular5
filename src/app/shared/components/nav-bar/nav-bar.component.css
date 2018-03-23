@@ -1,0 +1,11 @@
+.title {
+    color: #94681E;
+    font-size: xx-large;
+    display: inline;
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    float: left;
+}

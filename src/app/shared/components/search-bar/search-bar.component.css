@@ -1,0 +1,10 @@
+.dashboard {
+    background: #f7f8f9;
+    width: 80%;
+    /* position: absolute; */
+    left: 15%;
+}
+
+.well {
+    width: 20%;
+}

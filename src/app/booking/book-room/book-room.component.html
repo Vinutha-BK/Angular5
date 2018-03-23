@@ -1,0 +1,161 @@
+<div class="panel panel-primary">
+
+    <div class="panel-heading" style="font-size:large">
+        You are selected : {{" "+hotel?.hotelName}}
+    </div>
+    <!-- stepper start -->
+    <mat-horizontal-stepper [linear]="true">
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Select Stay Dates</ng-template>
+                <div class="panel-body flex">
+                    <div class="container">
+                        <div>
+                            <i class="material-icons">person_pin_circle</i>
+                            <label class="location font">{{hotel?.location}}</label></div>
+                        <div class="name font">INR:{{hotel?.price}}</div>
+                        <div class="details">
+                            <mat-form-field>
+                                <input matInput #fromDate formControlName="checkinDate" [min]="searchSVC.min" [formControl]="searchSVC.searchData.fromDate" [matDatepicker]="picker" placeholder="Check-in Date" (dateChange)="changeTime($event,fromDate.value)" (dateInput)="changeTime($event,fromDate.value)">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput #toDate formControlName="checkoutDate" [min]="toDateMin" [formControl]="searchSVC.searchData.toDate" [matDatepicker]="picker2" placeholder="Check-out Date">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-select placeholder="Room Type" [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}">
+                                    <mat-option *ngFor="let room of roomType" [value]="room.value">
+                                        {{room.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input type="number" [(ngModel)]="rooms" [ngModelOptions]="{standalone: true}" matInput placeholder="Rooms">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="details font changed">
+                            <label>Room Total: INR.{{rooms * selectedValue}}</label>
+
+                            <label>Taxes: INR.{{selectedValue*0.18}}</label>
+                            <label>Total Price: INR. {{rooms * selectedValue + selectedValue*0.18}}</label>
+                        </div>
+                    </div>
+                    <div class="faci">
+                        <label for="">Room facilities</label>
+                        <div class="faci1">
+                            <li>Air-conditioning</li>
+                            <li>Free Wi-Fi</li>
+                            <li>Baby cot free of charge</li>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding-top">
+                    <button mat-button matStepperNext class="btn" type="submit">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit(2)">
+                <ng-template matStepLabel>Enter Guest and Payment Details</ng-template>
+                <div class="guestDetails">
+                    <mat-form-field>
+                        <input matInput placeholder="First Name" formControlName="firstName" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Last Name" formControlName="lastName" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Phone Number" minLength="10" maxLength="10" pattern="[0-9]*" formControlName="phoneNumber" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput #adharnumber placeholder="Adhaar number" minLength='12' maxLength='12' pattern="[0-9]*" formControlName="adharNumber" required>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <textarea matInput placeholder="Address" formControlName="address" required></textarea>
+                    </mat-form-field>
+
+                </div>
+                <div class="padding-top">
+                    <button mat-button matStepperPrevious class="btn">Back</button>
+                    <button mat-button matStepperNext class="btn">Make Payment</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup" (ngSubmit)="onSubmit(3)">
+                <div>
+                    <ng-template matStepLabel>Payment</ng-template>
+                    <mat-radio-group>
+                        <mat-radio-button *ngFor="let payment of paymentType" [value]="payment">
+                            {{payment}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <div class="payment">
+                        <label class="formName">Card Number:</label>
+                        <mat-form-field class="card">
+                            <input matInput minLength="4" maxLength="4" pattern="[0-9]*" formControlName="card1" required>
+                        </mat-form-field>-
+                        <mat-form-field class="card">
+                            <input matInput minLength="4" maxLength="4" pattern="[0-9]*" formControlName="card2" required>
+                        </mat-form-field>-
+                        <mat-form-field class="card">
+                            <input matInput minLength="4" maxLength="4" pattern="[0-9]*" formControlName="card3" required>
+                        </mat-form-field>-
+                        <mat-form-field class="card">
+                            <input matInput minLength="4" maxLength="4" pattern="[0-9]*" formControlName="card4" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="payment">
+                        <label class="formName">Expiry:</label>
+                        <mat-select class="card" placeholder="Month" formControlName="month" required>
+                            <mat-option *ngFor="let mon of month" [value]="mon">
+                                {{mon}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-select class="card" placeholder="Year" formControlName="year" required>
+                            <mat-option *ngFor="let yr of year" [value]="yr">
+                                {{yr}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="payment">
+                        <label class="formName"> CVV:</label>
+                        <mat-form-field class="card">
+                            <input matInput type="password" minLength="4" maxLength="4" pattern="[0-9]*" formControlName="cvv" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="payment">
+                        <label class="formName">
+                  Name on Card:</label>
+
+                        <mat-form-field>
+                            <input matInput placeholder="" formControlName="name" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="padding-top">
+                    <button mat-button matStepperPrevious class="btn">Back</button>
+                    <button mat-button matStepperNext class="btn">Pay Now</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done .Details sent to registered mail.
+            <div>
+                <qr-code [(value)]="myQrCodeId" [size]="150"></qr-code>
+            </div>
+            <div class="padding-top">
+                <button mat-button matStepperNext class="btn" [routerLink]="['/hotels']">Done</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    <!-- stepper end -->
+</div>

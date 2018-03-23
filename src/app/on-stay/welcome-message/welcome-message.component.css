@@ -1,0 +1,21 @@
+.btn-primary {
+    margin-top: 10px;
+}
+
+.checkinData {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    background-color: #dee5ff;
+}
+
+.containerWidth {
+    width: 30%;
+    /* background-color: #dee5ff; */
+    height: 30%;
+}
+
+.flex {
+    display: flex;
+}

@@ -1,0 +1,65 @@
+thead {
+    color: #337AB7;
+}
+
+.scroll {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.icon {
+    width: 200px;
+    height: 200px;
+    float: left;
+    padding: 3px;
+}
+
+image.icon:hover {
+    width: 300px;
+    height: 300px;
+}
+
+.iconAnimation {
+    width: 200px;
+    height: 200px;
+    float: left;
+    padding: 3px
+}
+
+.item {
+    padding-left: 200px;
+}
+
+.listContainer {
+    margin: 5px;
+    background-color: #e2ae4e;
+    height: 200px;
+    transition: height 2s;
+    -webkit-transition: height 2s;
+    width: 100%;
+}
+
+div.listContainer:hover {
+    height: 300px;
+}
+
+.listContainerAnimation {
+    transform: scale(1) !important;
+    transition: 0.5s !important;
+    -webkit-transform: scale(1);
+    -webkit-transition: 0.5s;
+    transition-delay: 0.2s;
+}
+
+.alignRight {
+    float: right;
+    position: relative;
+}
+
+.list {
+    /* float: left; */
+    transform: scale(0);
+    transition: 0.5s;
+    -webkit-transform: scale(0);
+    -webkit-transition: 0.5s;
+}

@@ -1,0 +1,55 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" style="font-size:large">
+        Stay service
+    </div>
+    <div *ngIf="hotelService.noBooking">
+        <label for="">No Bookings</label>
+    </div>
+    <div *ngIf="!hotelService.noBooking" class="panel-body">
+        <div *ngIf="hotel?.checkInStatus == 1" class="row">
+            <div>
+                Avail the near by services
+                <div class="flex">
+                    <div class="containerWidth">
+                        Travelling
+                        <mat-card class="serviceWidth">
+                            <mat-card-header>
+                                <div mat-card-avatar class="travelimage"></div>
+                                <mat-card-title>Must see Places</mat-card-title>
+                                <mat-card-subtitle>Travel is Priceless</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="/assets/hotels/travel.jpg" alt="Photo of a Travel">
+                            <mat-card-content>
+                                <p>
+                                    Book now for More offers!!
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button (click)="service()">Go to site</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div class="containerWidth">
+                        Food
+                        <mat-card class="serviceWidth">
+                            <mat-card-header>
+                                <div mat-card-avatar class="foodimage"></div>
+                                <mat-card-title>Food Point</mat-card-title>
+                                <mat-card-subtitle>Best food in city</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="/assets/hotels/food.jpg" alt="Photo of a Travel">
+                            <mat-card-content>
+                                <p>
+                                    Order now for More offers!!
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button (click)="service()">Go to site</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

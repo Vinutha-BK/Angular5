@@ -1,0 +1,23 @@
+<div class="panel panel-primary">
+    <div class="panel-heading ">
+        Logon to your Account
+    </div>
+    <div class="panel-body">
+        <div class="col-lg-12">
+            <div class="col-lg-10">
+                <button (click)="userSVC.signInWithGoogle()" class="btn btn-block btn-social btn-google">
+                  <i class="material-icons">account_circle</i>
+                  <span class="fa fa-google"></span> Sign in with Google
+              </button>
+                <button (click)="userSVC.signInWithFB()" class="btn btn-block btn-social btn-facebook">
+                  <i class="material-icons">account_circle</i>
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                  <span class="fa fa-facebook"></span> Sign in with Facebook
+              </button>
+                <button (click)="userSVC.signInWithAzure()" class="btn btn-block btn-social btn-azure">
+                  <i class="material-icons">account_circle</i>
+                  <span class="fa fa-facebook"></span> Sign in with Azure                    
+              </button>
+            </div>
+        </div>
+    </div>

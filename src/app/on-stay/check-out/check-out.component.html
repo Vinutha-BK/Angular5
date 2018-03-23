@@ -1,0 +1,32 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" style="font-size:large">
+        Check Out
+    </div>
+    <div *ngIf="hotelService.noBooking">
+        <label for="">No Bookings</label>
+    </div>
+    <div *ngIf="!hotelService.noBooking" class="panel-body">
+        <div class="row">
+            <div *ngIf="hotel?.checkInStatus == 1" class="containerWidth">
+                <div>Pending payment: INR:{{hotelService.dueAmount}}</div>
+
+                <button *ngIf="!hotelService.paid" class="btn btn-primary" (click)="payment()">Pay Now</button>
+                <div *ngIf="hotelService.paid">No due</div>
+            </div>
+
+            <div class="flex" *ngIf="hotel?.checkInStatus == 2">
+                <div class="containerWidth">
+                    Thank you !!!
+                    <mat-form-field>
+                        <textarea #feedback matInput placeholder="Please enter your Feedback" formControlName="feedback"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!hotelService.noBooking" class="panel-footer">
+        <button type="submit" class="btn btn-primary" *ngIf="hotel?.checkInStatus == 1" [disabled]="!hotelService.paid" (click)="checkin(2)">Check Out</button>
+        <label *ngIf="hotel?.checkInStatus == 1">Pay remaining Amount to Checkout</label>
+        <button type="submit" class="btn btn-primary" *ngIf="hotel?.checkInStatus == 2 && hotelService.paid" [routerLink]="['/home']" (click)="feedback(feedback.value)">Done</button>
+    </div>
+</div>

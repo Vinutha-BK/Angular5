@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" style="font-size:large">
+        Booked Details
+    </div>
+    <div *ngIf="hotelService.noBooking">
+        <label for="">No Bookings</label>
+    </div>
+    <div *ngIf="!hotelService.noBooking && (hotel?.checkInStatus == 1 || hotel?.checkInStatus == 0)" class="panel-body">
+        <div class="row">
+            <div class="checkinData">
+                <div class="containerWidth">
+                    <div>First Name: {{hotel?.firstName}}</div>
+                    <div>Last Name: {{hotel?.lastName}}</div>
+                    <div>Phone Number: {{hotel?.phoneNumber}}</div>
+                    <div>Adhaar Number: {{hotel?.adharNumber}}</div>
+                    <div>Address: {{hotel?.address}}</div>
+                    <div>No of Rooms : {{hotel?.NoOfRooms}}</div>
+
+                </div>
+                <div class="containerWidth">
+                    <div>Rating : {{hotel?.starRating}}</div>
+                    <div>Booked on : {{hotel?.bookedDate}}</div>
+                    <div>From : {{hotel?.fromDate}}</div>
+                    <div>To : {{hotel?.toDate}}</div>
+                    <div>Amount paid : {{hotel?.paid}}</div>
+                </div>
+                <div class="containerWidth">
+                    <qr-code [(value)]="hotel.adharNumber" [size]="150" [level]="H"></qr-code>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!hotelService.noBooking" class="panel-footer">
+        <button type="submit" class="btn btn-primary" *ngIf="hotel.checkInStatus == 0" (click)="checkin(1)">Check in</button>
+    </div>
+</div>
